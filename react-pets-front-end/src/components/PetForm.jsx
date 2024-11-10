@@ -13,7 +13,7 @@ const PetForm = (props) => {
   // formData state to control the form
   // If pet data has been passed as props, we set formData as that pet object.
   // Otherwise, we can assume this is a new pet form, and use the empty initialState object.
-  const [formData, setFormData] = useState(props.selected ? props.selected : initialState);
+  const [formData, setFormData] = useState(props.selectedPet ? props.selectedPet : initialState);
 
   // handleChange function to update formData state
   const handleChange = (event) => {
@@ -51,7 +51,7 @@ const PetForm = (props) => {
           value={formData.breed}
           onChange={handleChange}
         />
-        <button type="submit"> {props.selected ? 'Update Pet' : 'Add New Pet'} </button> {/* UI feedback */}
+        <button type="submit"> {props.selectedPet ? 'Update Pet' : 'Add New Pet'} </button> {/* UI feedback */}
         {/* Lets user know, update or new pet. Based on if a pet is being shown in detail alreay */}
       </form>
     </div>
