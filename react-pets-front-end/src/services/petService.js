@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "axios"
 
 /* The attached VITE URL is pulled from the .env file */
 /* This format is good because it is interchangeable! */
@@ -26,13 +26,23 @@ const create = async (formData) => {
         const response = await axios.post(BASE_URL, formData)
       console.log(response)
       return response.data
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error)
     }
-  };
-  
+  }
 
+// UPDATE
+  
+const update = async (formData, petId) => {
+  try {
+    const response = await axios.put(`${BASE_URL}/${petId}`, formData) 
+    console.log(response)
+    return response.data
+  } catch (error) {
+    console.log(error)
+  }
+}
 // Can only export one thing
 // Get around it by nesting them all in objects
-export { index, create }
+export { index, create, update }
 

@@ -19,9 +19,9 @@ const PetDetail = (props) => {
           <h4>Breed: {props.selectedPet.breed}</h4>
           <p>{props.selectedPet.name} is a {props.selectedPet.age} year old {props.selectedPet.breed}!</p>
         </div>
-      );
+      )
 
-};
+}
   
 
 export default PetDetail

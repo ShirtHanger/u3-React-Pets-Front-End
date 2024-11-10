@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react'
 
 import * as petService from './services/petService' // The star imports EVERYTHING from the petService file, think ahead of time
 
-import PetList from './components/PetList';
-import PetDetail from './components/PetDetail';
-import PetForm from './components/PetForm';
+import PetList from './components/PetList'
+import PetDetail from './components/PetDetail'
+import PetForm from './components/PetForm'
 
 
 import './App.css'
@@ -33,7 +33,7 @@ const App = () => {
         // call on the index function for an API call
         const pets = await petService.index()
         if (pets.error) {
-          throw new Error(pets.error);
+          throw new Error(pets.error)
         }
 
         // Set petList state to the returned pets data
@@ -45,7 +45,7 @@ const App = () => {
       }
     }
     // invoke the function
-    fetchPets();
+    fetchPets()
 
     // add an empty dependency array to the `useEffect` hook.
   }, [])
@@ -57,25 +57,44 @@ const App = () => {
   /* If there is no pet being shown in detail, assumes you want new pet. Otherwise, update the shown pet */
 
   function handleFormView(pet) {
-    if (!pet.name) setSelected(null);
+    if (!pet.name) setSelected(null)
     setIsFormOpen(!isFormOpen)
   }
 
   async function handleAddPet(formData) {
     try {
-      const newPet = await petService.create(formData);
+      const newPet = await petService.create(formData)
   
       if (newPet.error) {
-        throw new Error(newPet.error);
+        throw new Error(newPet.error)
       }
   
-      setPetList([newPet, ...petList]);
-      setIsFormOpen(false);
+      setPetList([newPet, ...petList])
+      setIsFormOpen(false)
     } catch (error) {
       // Log the error to the console
-      console.log(error);
+      console.log(error)
     }
   }
+
+  async function handleUpdatePet(formData, petId) {
+    try {
+      const updatedPet = await petService.update(formData, petId)
+  
+      if (updatedPet.error) {
+        throw new Error(updatedPet.error)
+      }
+  
+      setPetList([updatedPet, ...petList])
+      setIsFormOpen(false)
+      setSelected(updatedPet)
+    } catch (error) {
+      // Log the error to the console
+      console.log(error)
+    }
+  }
+
+  
 
   return (
 
@@ -87,7 +106,7 @@ const App = () => {
   handleFormView={handleFormView}/>
   {/* IF/ELSE to determine if form view will be shown or not */}
   {isFormOpen ? (
-      <PetForm handleAddPet={handleAddPet} selectedPet={selected}/>
+      <PetForm handleAddPet={handleAddPet} handleUpdatePet={handleUpdatePet} selectedPet={selected}/>
     ) : (
       <PetDetail selectedPet={selected} handleFormView={handleFormView} />
     )}
