@@ -13,6 +13,7 @@ const PetDetail = (props) => {
   
     return (
         <div>
+          <button onClick={() => props.handleFormView(props.selectedPet)}>Edit</button>
           <h2>Name: {props.selectedPet.name}</h2>
           <h4>Age: {props.selectedPet.age}</h4>
           <h4>Breed: {props.selectedPet.breed}</h4>

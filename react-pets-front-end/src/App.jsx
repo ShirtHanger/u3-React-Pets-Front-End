@@ -54,7 +54,10 @@ const App = () => {
     setSelected(pet)
   }
 
-  function handleFormView() {
+  /* If there is no pet being shown in detail, assumes you want new pet. Otherwise, update the shown pet */
+
+  function handleFormView(pet) {
+    if (!pet.name) setSelected(null);
     setIsFormOpen(!isFormOpen)
   }
 
@@ -86,7 +89,7 @@ const App = () => {
   {isFormOpen ? (
       <PetForm handleAddPet={handleAddPet}/>
     ) : (
-      <PetDetail selectedPet={selected} />
+      <PetDetail selectedPet={selected} handleFormView={handleFormView} />
     )}
   </>
 
