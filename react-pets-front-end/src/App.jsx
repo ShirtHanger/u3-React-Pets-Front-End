@@ -84,7 +84,7 @@ const App = () => {
   handleFormView={handleFormView}/>
   {/* IF/ELSE to determine if form view will be shown or not */}
   {isFormOpen ? (
-      <PetForm handleAddPet={handleAddPet} />
+      <PetForm handleAddPet={handleAddPet}/>
     ) : (
       <PetDetail selectedPet={selected} />
     )}
