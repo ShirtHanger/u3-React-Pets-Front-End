@@ -94,6 +94,29 @@ const App = () => {
     }
   }
 
+  async function handleDeletePet(petId) {
+    try {
+      const deletedPet = await petService.deletePet(petId)
+  
+      if (deletedPet.error) {
+        throw new Error(deletedPet.error)
+      }
+
+      /* Using filter to create new pet array that EXCLUDES the pet that was targetted for deletion, 
+      by excluding any object with the Id of the target's ID */
+  
+      setPetList(petList.filter(pet => 
+        pet._id !== deletedPet._id
+      ))
+
+      setSelected(null)
+      setIsFormOpen(false)
+    } catch (error) {
+      // Log the error to the console
+      console.log(error)
+    }
+  }
+
   
 
   return (
@@ -108,7 +131,7 @@ const App = () => {
   {isFormOpen ? (
       <PetForm handleAddPet={handleAddPet} handleUpdatePet={handleUpdatePet} selectedPet={selected}/>
     ) : (
-      <PetDetail selectedPet={selected} handleFormView={handleFormView} />
+      <PetDetail selectedPet={selected} handleFormView={handleFormView} handleDeletePet={handleDeletePet} />
     )}
   </>
 

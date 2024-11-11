@@ -57,7 +57,7 @@ const PetForm = (props) => {
           onChange={handleChange}
         />
         <button type="submit" onClick={handleSubmitForm}> {props.selectedPet ? 'Update Pet' : 'Add New Pet'} </button> {/* UI feedback */}
-        {/* Lets user know, update or new pet. Based on if a pet is being shown in detail alreay */}
+        {/* Lets user know, update or new pet. Based on if a pet is being shown in detail already */}
       </form>
     </div>
   )

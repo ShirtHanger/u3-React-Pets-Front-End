@@ -31,7 +31,7 @@ const create = async (formData) => {
     }
   }
 
-// UPDATE
+// UPDATE, update an existing pet object
   
 const update = async (formData, petId) => {
   try {
@@ -42,7 +42,21 @@ const update = async (formData, petId) => {
     console.log(error)
   }
 }
+
+// DELETE - Deletes a pet from the database!
+  /* It told me 'delete' wasn't a valid function name */
+
+const deletePet = async (petId) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}/${petId}`) 
+    console.log(response)
+    return response.data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 // Can only export one thing
 // Get around it by nesting them all in objects
-export { index, create, update }
+export { index, create, update, deletePet }
 
