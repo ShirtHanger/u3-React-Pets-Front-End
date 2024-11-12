@@ -1,8 +1,8 @@
-// src/components/PetForm.jsx
-
 import { useState } from 'react'
 
 const PetForm = (props) => {
+
+  /* The object keys MUST match the mongoose API keys in schema */
 
   const initialState = {
     name: '',
@@ -16,11 +16,11 @@ const PetForm = (props) => {
   const [formData, setFormData] = useState(props.selectedPet ? props.selectedPet : initialState)
 
   // handleChange function to update formData state
-  const handleChange = (event) => {
+  async function handleChange(event) {
     setFormData({ ...formData, [event.target.name]: event.target.value })
   }
 
-  const handleSubmitForm = (event) => {
+  async function handleSubmitForm(event) {
     event.preventDefault()
     if (props.selectedPet) { /* If a specific pet was selected, update that pet with form data */
       props.handleUpdatePet(formData, props.selectedPet._id)
@@ -56,7 +56,7 @@ const PetForm = (props) => {
           value={formData.breed}
           onChange={handleChange}
         />
-        <button type="submit" onClick={handleSubmitForm}> {props.selectedPet ? 'Update Pet' : 'Add New Pet'} </button> {/* UI feedback */}
+        <button type="submit" onClick={handleSubmitForm}> {props.selectedPet ? `Update ${props.selectedPet.name}'s info` : 'Add New Pet'} </button> {/* UI feedback */}
         {/* Lets user know, update or new pet. Based on if a pet is being shown in detail already */}
       </form>
     </div>

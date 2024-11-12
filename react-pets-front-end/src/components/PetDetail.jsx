@@ -1,5 +1,3 @@
-// src/components/PetDetail.jsx
-
 const PetDetail = (props) => {
 
     /* useState is being used as a workaround since this specific app isn't using ROUTES */

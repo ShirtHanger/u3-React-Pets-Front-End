@@ -1,5 +1,3 @@
-// src/components/PetList.jsx
-
 const PetList = (props) => {
 
     /* Creates a list of pet elements for the web page. Each individual pet will look like this */
@@ -14,8 +12,15 @@ const PetList = (props) => {
     return (
         <div>
           <h2>Plant List</h2>
-          {/* Renders pet list, but if there are no pets, shows message indicating such */}
-          {!props.petList.length ? <h3>No Pets Yet!</h3> : <ul>{pets}</ul>}
+
+            {/* Renders pet list, but if there are no pets, shows message indicating such */}
+
+          {!props.petList.length ? 
+            <h3>No Pets Yet!</h3> 
+            : 
+            <ul>{pets}</ul>}
+
+            {/* Submit/Update/Delete button */}
           <button onClick={props.handleFormView}>
                 {props.isFormOpen ? 'Close Form' : 'New Pet'}
             </button>

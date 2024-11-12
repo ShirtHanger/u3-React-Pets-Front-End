@@ -10,31 +10,31 @@ const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/pets`
 // Read - Index
 /* populates the REACT website with a list of pets */
 
-async function index() {
-    try {
-        const response = await axios.get(BASE_URL)
-        return response.data // Sends data back in JSON format, axios does this automatically, so .json() is not required
-    } catch (error) {
-        console.log(error)
-    }
+async function indexPets() {
+  try {
+      const response = await axios.get(BASE_URL)
+      return response.data // Sends data back in JSON format, axios does this automatically, so .json() is not required
+  } catch (error) {
+      console.log(error)
+  }
 }
 
 // CREATE, make a new pet object!
 
-const create = async (formData) => {
-    try {
-        const response = await axios.post(BASE_URL, formData)
-      console.log(response)
-      return response.data
-    } catch (error) {
-      console.log(error)
-    }
+async function createPet(formData) {
+  try { /* axios.post takes the target URL and the new object as arguements */
+    const response = await axios.post(BASE_URL, formData)
+    console.log(response)
+    return response.data
+  } catch (error) {
+    console.log(error)
   }
+}
 
 // UPDATE, update an existing pet object
   
-const update = async (formData, petId) => {
-  try {
+async function updatePet(formData, petId) {
+  try { /* axios.put takes the target object's URL and the updated object as arguements */
     const response = await axios.put(`${BASE_URL}/${petId}`, formData) 
     console.log(response)
     return response.data
@@ -44,10 +44,10 @@ const update = async (formData, petId) => {
 }
 
 // DELETE - Deletes a pet from the database!
-  /* It told me 'delete' wasn't a valid function name */
+  /* It told me 'delete' was a reserved word */
 
-const deletePet = async (petId) => {
-  try {
+async function deletePet(petId) {
+  try { /* axios.delete only takes the target object's URL as an arguement */
     const response = await axios.delete(`${BASE_URL}/${petId}`) 
     console.log(response)
     return response.data
@@ -58,5 +58,5 @@ const deletePet = async (petId) => {
 
 // Can only export one thing
 // Get around it by nesting them all in objects
-export { index, create, update, deletePet }
+export { indexPets, createPet, updatePet, deletePet }
 
